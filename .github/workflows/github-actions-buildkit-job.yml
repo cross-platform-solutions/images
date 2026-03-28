@@ -1,6 +1,7 @@
 name: github-actions-buildkit-job
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
