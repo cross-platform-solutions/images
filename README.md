@@ -36,6 +36,7 @@ All images published here are **publicly available** and free to use by anyone o
 5. **Documentation** – Each image directory should contain a `README.md` describing what the image does, how to use it, and any relevant configuration.
 6. **Minimal & purposeful** – Keep images small and purposeful. Avoid installing unnecessary packages.
 7. **No secrets** – Never embed credentials, tokens, or private keys in a Dockerfile or workflow.
+8. **Multi-platform builds** – Every pipeline must include `platforms: linux/amd64,linux/arm64` in the `docker/build-push-action` step to ensure images are built for both AMD64 and ARM64 architectures.
 
 ---
 
@@ -109,6 +110,7 @@ jobs:
         with:
           context: ${{ env.IMAGE_NAME }}
           push: ${{ github.ref == 'refs/heads/main' }}
+          platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/cross-platform-solutions/${{ env.IMAGE_NAME }}:latest
             ghcr.io/cross-platform-solutions/${{ env.IMAGE_NAME }}:${{ github.sha }}
@@ -131,6 +133,7 @@ jobs:
 | Tags published | `latest` and the full commit SHA (`${{ github.sha }}`) |
 | Trigger paths | Scoped to `<image-name>/**` to avoid unnecessary builds |
 | Push condition | Only on pushes to `main` branch |
+| Platforms | Must always include `platforms: linux/amd64,linux/arm64` to build multi-arch images |
 
 ---
 
