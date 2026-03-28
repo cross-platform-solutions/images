@@ -81,7 +81,7 @@ on:
       - '<your-image-name>/**'
 
 env:
-  IMAGE_NAME: ghcr.io/cross-platform-solutions/<your-image-name>
+  IMAGE_NAME: <your-image-name>
 
 jobs:
   build-and-push:
@@ -107,11 +107,11 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v6
         with:
-          context: <your-image-name>
+          context: ${{ env.IMAGE_NAME }}
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ghcr.io/cross-platform-solutions/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/cross-platform-solutions/${{ env.IMAGE_NAME }}:${{ github.sha }}
 ```
 
 ### 4. Open a Pull Request
