@@ -9,12 +9,12 @@ RUN apk add --no-cache \
     git \
     openssh-client
 
-RUN mkdir -p /home/build/.docker \
- && chown -R 1000:1000 /home/build
+RUN mkdir -p /home/runner/.docker \
+ && chown -R 1000:1000 /home/runner
 
 USER 1000:1000
 
-ENV HOME=/home/build
+ENV HOME=/home/runner
 
 ENTRYPOINT []
 
