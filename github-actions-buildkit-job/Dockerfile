@@ -10,9 +10,9 @@ RUN apk add --no-cache \
     openssh-client
 
 RUN mkdir -p /home/runner/.docker \
- && chown -R 1000:1000 /home/runner
+ && chown -R 1001:1001 /home/runner
 
-USER 1000:1000
+USER 1001:1001
 
 ENV HOME=/home/runner
 
