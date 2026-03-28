@@ -1,4 +1,4 @@
-FROM moby/buildkit:rootless
+FROM moby/buildkit:latest
 
 USER root
 
@@ -9,12 +9,9 @@ RUN apk add --no-cache \
     git \
     openssh-client
 
-RUN mkdir -p /home/user/.docker \
- && chown -R 1000:1000 /home/user
+RUN mkdir -p /root/.docker
 
-USER 1000:1000
-
-ENV HOME=/home/user
+ENV HOME=/root
 
 ENTRYPOINT []
 
